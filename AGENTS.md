@@ -88,6 +88,8 @@ cd web && NEXT_PUBLIC_MOCK=1 npm run dev                        # 无后端 Mock
 
 ## 坑与注意
 
+- **git 推 GitHub 需走代理**：git 不读 Windows 系统代理（本机系统代理为 `127.0.0.1:7890`），直接 push 会 `Failed to connect to github.com:443`。用 `git -c http.proxy=http://127.0.0.1:7890 push origin main`，或一次性固化 `git config http.proxy http://127.0.0.1:7890`
+
 - 发布产物别直接跑 `./artex`，要用 `start.sh` / `start.bat`（守护换装，页面一键更新依赖它）
 - `docs/` 在 .gitignore 里，但 `docs/漏洞流量证据.md` 已被跟踪、可正常提交
 - 升级只换程序不动数据（`pgdata` 卷、`./data`、`./skills` 保留）；数据库结构不随回滚回退
